@@ -60,10 +60,10 @@ Activate this skill when the user asks to:
    - Evidence checklist
 
 ERROR HANDLING:
-- Empty input: "No patterns found. Run patent-scanner first."
-- Invalid format: "Unable to parse. Describe your pattern manually."
+- Empty input: "I don't see scanner output yet. Paste your patterns.json, or describe your pattern directly."
+- Invalid format: "I couldn't parse that format. Describe your pattern directly and I'll work with that."
 - Missing fields: Skip pattern, report "Pattern [X] skipped - missing [field]"
-- All patterns below threshold: "No patterns above score threshold (>=5)"
+- All patterns below threshold: "No patterns scored above threshold. This may mean the distinctiveness is in execution, not architecture."
 ```
 
 ---
