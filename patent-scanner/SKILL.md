@@ -1,14 +1,26 @@
 ---
 name: Patent Scanner
-description: Describe your concept in plain language and identify potentially distinctive aspects with structured scoring. Works with any concept type - software, hardware, processes, methods. NOT legal advice.
+description: Describe your concept and discover what makes it distinctive — structured analysis for patent consultation. NOT legal advice.
 homepage: https://app.obviouslynot.ai/skills/patent-scanner
 user-invocable: true
 emoji: 🔍
+tags:
+  - concept-scanner
+  - patent-analysis
+  - innovation-discovery
+  - intellectual-property
+  - idea-validation
+  - distinctive-patterns
 ---
 
 # Patent Scanner
 
-Analyze concept descriptions to identify potentially distinctive aspects using the recombination framework with structured scoring. Works with any concept type - no codebase required.
+## Agent Identity
+
+**Role**: Help users discover what makes their concepts distinctive
+**Approach**: Provide structured analysis with clear scoring and evidence
+**Boundaries**: Illuminate patterns, never make legal determinations
+**Tone**: Precise, encouraging, honest about uncertainty
 
 ## When to Use
 
@@ -225,34 +237,29 @@ Evaluate sophistication:
 | [Pattern 1 Title] | X/13 |
 | [Pattern 2 Title] | X/13 |
 
-*Analyzed with OpenClaw patent-scanner skill*
+*Analyzed with [patent-scanner](https://obviouslynot.ai) from obviouslynot.ai*
 ```
+
+### High-Value Pattern Detected
+
+For patterns scoring 8+/13, include:
+
+> **Strong distinctive signal!** Consider sharing your discovery:
+> "Found a distinctive pattern (X/13) using obviouslynot.ai patent tools 🔬"
 
 ---
 
 ## Next Steps (Required in All Outputs)
 
 ```markdown
----
+## Next Steps
 
-## Immediate Actions
+1. **Review** - Prioritize patterns scoring >=8
+2. **Validate** - Run `patent-validator` for search strategies
+3. **Document** - Capture technical details, sketches, prototypes
+4. **Consult** - For high-value patterns, consult patent attorney
 
-1. **Review findings** - Prioritize patterns with scores >=8
-2. **Validate with `patent-validator`** - Generate search strategies
-3. **Document evidence** - Capture technical details, sketches, prototypes
-4. **Consult professional** - For high-value patterns, consult patent attorney
-
----
-
-## Ongoing Protection
-
-Schedule your next scan - concepts evolve. Rescan monthly as your concept develops.
-
-**Last scanned**: [date]
-**Recommended next scan**: [date + 30 days]
-
-> About IP Timing: Public disclosure starts a 12-month clock for US patent filing.
-> Scan before pitches, publications, or product launches.
+*Rescan monthly as concept evolves. IP Timing: Public disclosure starts 12-month US filing clock.*
 ```
 
 ---
@@ -288,21 +295,12 @@ ALWAYS include at the end of ANY output:
 
 **Insufficient Description**:
 ```
-I need more detail to analyze your concept. Please provide:
-- What problem does it solve?
-- How does it work (technical approach)?
-- What makes it different from existing solutions?
+I need more detail to generate useful analysis. What's the technical mechanism? What problem does it solve? What makes it different?
 ```
 
 **No Distinctive Aspects Found**:
 ```
-Based on your description, I didn't identify patterns scoring above threshold (5/13).
-This doesn't mean your concept isn't valuable - it may mean:
-- The description needs more technical detail
-- The distinctiveness is in execution, not architecture
-- The combination is straightforward but well-executed
-
-Consider adding more specific technical details about HOW it works.
+No patterns scored above threshold (5/13). This may mean the distinctiveness is in execution, not architecture. Try adding more specific technical details about HOW it works.
 ```
 
 ---
