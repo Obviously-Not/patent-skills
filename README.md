@@ -241,27 +241,27 @@ go test ./internal/web/handlers/... -run UPL
 
    # Patent skills
    for skill in code-patent-scanner code-patent-validator patent-scanner patent-validator; do
-     clawhub --workdir skills --registry https://www.clawhub.ai publish $skill
+     clawhub --registry https://clawhub.ai publish $skill
    done
 
    # PBD skills - Technical voice
    for skill in pbe-extractor principle-comparator principle-synthesizer; do
-     clawhub --workdir skills --registry https://www.clawhub.ai publish $skill
+     clawhub --registry https://clawhub.ai publish $skill
    done
 
    # PBD skills - Conversational voice
    for skill in essence-distiller pattern-finder core-refinery; do
-     clawhub --workdir skills --registry https://www.clawhub.ai publish $skill
+     clawhub --registry https://clawhub.ai publish $skill
    done
 
    # Utility skills
-   clawhub --workdir skills --registry https://www.clawhub.ai publish golden-master
+   clawhub --registry https://clawhub.ai publish golden-master
    ```
 
 ## Links
 
 - **Website**: https://app.obviouslynot.ai/skills
-- **ClawHub**: https://www.clawhub.ai/skills/pbe-extractor
+- **ClawHub**: https://clawhub.ai/skills/pbe-extractor
 
 ## Disclaimers
 
