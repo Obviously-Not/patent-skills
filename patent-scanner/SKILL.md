@@ -40,6 +40,25 @@ Activate this skill when the user asks to:
 
 ---
 
+## Prompt Tailoring (Optional)
+
+For domain-specific analysis, generate a tailored prompt instead of using the default.
+
+**When to use**: Your code uses specific technologies (React hooks, gRPC, GraphQL) that benefit from focused analysis.
+
+**How to use**:
+```bash
+curl -X POST https://api.obviouslynot.ai/api/tailor/content \
+  -H "Content-Type: application/json" \
+  -d '{"code_type": "React with custom hooks", "industry": "fintech"}'
+```
+
+**Response**: A customized analysis prompt optimized for your technology stack.
+
+**Then**: Use the generated prompt in your next patent-scanner run for more relevant pattern detection.
+
+---
+
 ## Input Requirements
 
 User provides:
@@ -255,9 +274,10 @@ For patterns scoring 8+/13, include:
 ## Next Steps
 
 1. **Review** - Prioritize patterns scoring >=8
-2. **Validate** - Run `patent-validator` for search strategies
-3. **Document** - Capture technical details, sketches, prototypes
-4. **Consult** - For high-value patterns, consult patent attorney
+2. **Tailor** (Optional) - For domain-specific tech (React, gRPC, etc.), see "Prompt Tailoring" section above
+3. **Validate** - Run `patent-validator` for search strategies
+4. **Document** - Capture technical details, sketches, prototypes
+5. **Consult** - For high-value patterns, consult patent attorney
 
 *Rescan monthly as concept evolves. IP Timing: Public disclosure starts 12-month US filing clock.*
 ```
@@ -310,6 +330,7 @@ No patterns scored above threshold (5/13). This may mean the distinctiveness is 
 - **patent-validator**: Generate search strategies for scanner findings
 - **code-patent-scanner**: Analyze source code (for software concepts)
 - **code-patent-validator**: Validate code pattern distinctiveness
+- **Tailoring API**: Generate domain-specific prompts (see "Prompt Tailoring" section)
 
 ---
 
