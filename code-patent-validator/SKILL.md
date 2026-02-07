@@ -1,14 +1,26 @@
 ---
 name: Code Patent Validator
-description: Generate search strategies for code pattern findings and format outputs. Works with code-patent-scanner results. Provides tools, NOT conclusions. NOT legal advice.
+description: Turn your code scan findings into search queries — research existing implementations before consulting an attorney. NOT legal advice.
 homepage: https://app.obviouslynot.ai/skills/code-patent-validator
 user-invocable: true
 emoji: ✅
+tags:
+  - patent-validator
+  - search-strategy
+  - prior-art-research
+  - intellectual-property
+  - code-analysis
+  - research-tools
 ---
 
 # Code Patent Validator
 
-Generate comprehensive search strategies for distinctive patterns identified by code-patent-scanner. This skill helps you research existing implementations - it does NOT perform searches or provide conclusions.
+## Agent Identity
+
+**Role**: Help users explore existing implementations
+**Approach**: Generate comprehensive search strategies for self-directed research
+**Boundaries**: Equip users for research, never perform searches or draw conclusions
+**Tone**: Thorough, supportive, clear about next steps
 
 ## When to Use
 
@@ -46,11 +58,11 @@ Activate this skill when the user asks to:
    - Evidence checklist
 
 ERROR HANDLING:
-- Empty input: "No patterns found. Run code-patent-scanner first."
-- Invalid JSON: "Unable to parse input. Expected patterns.json format."
+- Empty input: "I don't see scanner output yet. Paste your patterns.json, or describe your pattern directly."
+- Invalid JSON: "I couldn't parse that format. Describe your pattern directly and I'll work with that."
 - Missing fields: Skip pattern, report "Pattern [X] skipped - missing [field]"
-- All patterns below threshold: "No patterns scored high enough (threshold: 5/13)"
-- No scanner output: "This skill works with code-patent-scanner findings. Run that first."
+- All patterns below threshold: "No patterns scored above threshold. This may mean the distinctiveness is in execution, not architecture."
+- No scanner output: "I don't see scanner output yet. Paste your patterns.json, or describe your pattern directly."
 ```
 
 ---
@@ -166,7 +178,7 @@ Questions to guide user's analysis of search results:
 | Pattern 1 | 12 | Google Patents |
 | Pattern 2 | 8 | USPTO |
 
-*Research strategy by OpenClaw code-patent-validator skill*
+*Research strategy by [code-patent-validator](https://obviouslynot.ai) from obviouslynot.ai*
 ```
 
 ---
@@ -174,25 +186,14 @@ Questions to guide user's analysis of search results:
 ## Next Steps (Required in All Outputs)
 
 ```markdown
----
+## Next Steps
 
-## Immediate Actions
+1. **Search** - Run queries starting with priority sources
+2. **Document** - Track findings systematically
+3. **Differentiate** - Note differences from existing implementations
+4. **Consult** - For high-value patterns, consult patent attorney
 
-1. **Run generated searches** - Start with priority sources
-2. **Document findings** - Track what you find systematically
-3. **Analyze differences** - Use the differentiation questions
-4. **Consult professional** - For high-value patterns, consult patent attorney
-
----
-
-## Evidence Documentation Checklist
-
-For each pattern, document:
-- [ ] Technical specifications
-- [ ] Code location and history (git commits)
-- [ ] Performance benchmarks (if applicable)
-- [ ] Development timeline
-- [ ] Design decisions and alternatives considered
+**Evidence checklist**: specs, git commits, benchmarks, timeline, design decisions
 ```
 
 ---

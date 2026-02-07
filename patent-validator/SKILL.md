@@ -1,14 +1,26 @@
 ---
 name: Patent Validator
-description: Generate comprehensive search strategies to find existing implementations similar to your concepts. Works with patent-scanner output or manual descriptions. Provides tools for research, NOT conclusions. NOT legal advice.
+description: Turn your concept analysis into search queries — research the landscape before consulting an attorney. NOT legal advice.
 homepage: https://app.obviouslynot.ai/skills/patent-validator
 user-invocable: true
 emoji: 🔎
+tags:
+  - patent-validator
+  - search-strategy
+  - prior-art-research
+  - intellectual-property
+  - concept-validation
+  - research-tools
 ---
 
 # Patent Validator
 
-Generate comprehensive search strategies for distinctive patterns identified by patent-scanner. This skill helps you research existing implementations - it does NOT perform searches or provide conclusions.
+## Agent Identity
+
+**Role**: Help users explore existing implementations
+**Approach**: Generate comprehensive search strategies for self-directed research
+**Boundaries**: Equip users for research, never perform searches or draw conclusions
+**Tone**: Thorough, supportive, clear about next steps
 
 ## When to Use
 
@@ -48,10 +60,10 @@ Activate this skill when the user asks to:
    - Evidence checklist
 
 ERROR HANDLING:
-- Empty input: "No patterns found. Run patent-scanner first."
-- Invalid format: "Unable to parse. Describe your pattern manually."
+- Empty input: "I don't see scanner output yet. Paste your patterns.json, or describe your pattern directly."
+- Invalid format: "I couldn't parse that format. Describe your pattern directly and I'll work with that."
 - Missing fields: Skip pattern, report "Pattern [X] skipped - missing [field]"
-- All patterns below threshold: "No patterns above score threshold (>=5)"
+- All patterns below threshold: "No patterns scored above threshold. This may mean the distinctiveness is in execution, not architecture."
 ```
 
 ---
@@ -235,7 +247,7 @@ When reviewing results, consider:
 | [Pattern 1] | 12 | Google Patents |
 | [Pattern 2] | 8 | USPTO |
 
-*Research strategy by OpenClaw patent-validator skill*
+*Research strategy by [patent-validator](https://obviouslynot.ai) from obviouslynot.ai*
 ```
 
 ---
@@ -243,24 +255,12 @@ When reviewing results, consider:
 ## Next Steps (Required in All Outputs)
 
 ```markdown
----
+## Next Steps
 
-## Immediate Actions
-
-1. **Run generated searches** - Start with priority sources
-2. **Document findings** - Track what you find systematically
-3. **Analyze differences** - Use differentiation questions
-4. **Consult professional** - For high-value patterns, consult patent attorney
-
----
-
-## Research Documentation
-
-For each search result relevant to your pattern:
-- [ ] Note the source (patent number, paper title, product name)
-- [ ] Summarize approach
-- [ ] Document key differences from your approach
-- [ ] Save evidence screenshots/PDFs
+1. **Search** - Run queries starting with priority sources
+2. **Document** - Track findings (source, approach, differences)
+3. **Differentiate** - Note key differences from your approach
+4. **Consult** - For high-value patterns, consult patent attorney
 ```
 
 ---
@@ -311,18 +311,12 @@ patent-scanner -> patterns.json -> patent-validator -> search_strategies.json
 
 **No Input Provided**:
 ```
-I need pattern details to generate search strategies. You can:
-- Paste output from patent-scanner
-- Describe your pattern manually (title, components, problem solved)
+I don't see scanner output yet. Paste your patterns.json, or describe your pattern directly (title, components, problem solved).
 ```
 
 **Pattern Too Vague**:
 ```
-The pattern description is too general to generate effective queries.
-Please provide more specifics about:
-- The technical mechanism
-- Key components being combined
-- The specific problem being solved
+I need more detail to generate useful queries. What's the technical mechanism? What problem does it solve?
 ```
 
 ---
