@@ -1,7 +1,7 @@
 ---
 name: Golden Master
 description: Track source-of-truth relationships between files — know when derived content becomes stale.
-homepage: https://app.obviouslynot.ai/skills/golden-master
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/golden-master
 user-invocable: true
 emoji: 🏆
 tags:

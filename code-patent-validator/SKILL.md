@@ -1,7 +1,7 @@
 ---
 name: Code Patent Validator
 description: Turn your code scan findings into search queries — research existing implementations before consulting an attorney. NOT legal advice.
-homepage: https://app.obviouslynot.ai/skills/code-patent-validator
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-validator
 user-invocable: true
 emoji: ✅
 tags:

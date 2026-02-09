@@ -1,7 +1,7 @@
 ---
 name: Essence Distiller
 description: Find what actually matters in your content — the ideas that survive any rephrasing.
-homepage: https://app.obviouslynot.ai/skills/essence-distiller
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/essence-distiller
 user-invocable: true
 emoji: ✨
 tags:

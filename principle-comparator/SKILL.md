@@ -1,7 +1,7 @@
 ---
 name: Principle Comparator
 description: Compare two sources to find shared and divergent principles — discover what survives independent observation.
-homepage: https://app.obviouslynot.ai/skills/principle-comparator
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/principle-comparator
 user-invocable: true
 emoji: ⚖️
 tags:

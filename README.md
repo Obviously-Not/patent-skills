@@ -260,7 +260,7 @@ go test ./internal/web/handlers/... -run UPL
 
 ## Links
 
-- **Website**: https://app.obviouslynot.ai/skills
+- **Website**: https://github.com/Obviously-Not/patent-skills
 - **ClawHub**: https://clawhub.ai/skills/pbe-extractor
 
 ## Disclaimers

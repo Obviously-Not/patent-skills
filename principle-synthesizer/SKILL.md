@@ -1,7 +1,7 @@
 ---
 name: Principle Synthesizer
 description: Synthesize invariant principles from 3+ sources — find the core that survives across all expressions.
-homepage: https://app.obviouslynot.ai/skills/principle-synthesizer
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/principle-synthesizer
 user-invocable: true
 emoji: ⚗️
 tags:

@@ -1,7 +1,7 @@
 ---
 name: PBE Extractor
 description: Extract invariant principles from any text — find the ideas that survive rephrasing.
-homepage: https://app.obviouslynot.ai/skills/pbe-extractor
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/pbe-extractor
 user-invocable: true
 emoji: 📐
 tags:

@@ -1,7 +1,7 @@
 ---
 name: Pattern Finder
 description: Discover what two sources agree on — find the signal in the noise.
-homepage: https://app.obviouslynot.ai/skills/pattern-finder
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/pattern-finder
 user-invocable: true
 emoji: 🧭
 tags:

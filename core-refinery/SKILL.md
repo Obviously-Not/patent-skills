@@ -1,7 +1,7 @@
 ---
 name: Core Refinery
 description: Find the core that runs through everything — the ideas that survive across all your sources.
-homepage: https://app.obviouslynot.ai/skills/core-refinery
+homepage: https://github.com/Obviously-Not/patent-skills/tree/main/core-refinery
 user-invocable: true
 emoji: 💎
 tags:
