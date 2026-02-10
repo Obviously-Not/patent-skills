@@ -60,6 +60,19 @@ An idea is essential when:
 **Passes**: "Small files are easier to understand" ≈ "Brevity reduces cognitive load"
 **Fails**: "Small files" ≈ "Fast files" (sounds similar, means different things)
 
+### Why I Normalize
+
+When I find a principle, I also create a "normalized" version — same meaning, standard format. This helps when comparing with other sources later.
+
+**Your words**: "I always double-check my work before submitting"
+**Normalized**: "Values verification before completion"
+
+I keep both! Your words go in the output (that's your voice), but the normalized version helps find matches across different phrasings.
+
+*(Yes, I use "I" when talking to you, but your principles become universal statements without pronouns — that's the difference between conversation and normalization!)*
+
+**When I skip normalization**: Some principles should stay specific — context-bound rules ("Never ship on Fridays"), exact thresholds ("Deploy at most 3 times per day"), or step-by-step processes. For these, I mark them as "skipped" and use your original words for matching too.
+
 ---
 
 ## What You'll Get
@@ -141,13 +154,16 @@ Use the **pattern-finder** skill to compare extractions and build N-counts.
   "metadata": {
     "source_hash": "a1b2c3d4",
     "timestamp": "2026-02-04T12:00:00Z",
-    "compression_ratio": "79%"
+    "compression_ratio": "79%",
+    "normalization_version": "v1.0.0"
   },
   "result": {
     "principles": [
       {
         "id": "P1",
-        "statement": "Compression that preserves meaning demonstrates comprehension",
+        "statement": "I always double-check my work before submitting",
+        "normalized_form": "Values verification before completion",
+        "normalization_status": "success",
         "confidence": "high",
         "n_count": 1,
         "source_evidence": ["Direct quote"],
@@ -161,6 +177,12 @@ Use the **pattern-finder** skill to compare extractions and build N-counts.
   ]
 }
 ```
+
+**normalization_status** tells you what happened:
+- `success` — normalized without issues
+- `failed` — couldn't normalize, using your original words
+- `drift` — meaning might have changed, flagged for review
+- `skipped` — intentionally kept specific (context-bound, numerical, process)
 
 ### Error Messages
 

@@ -82,15 +82,32 @@ This skill compares extractions to find **shared and divergent principles** usin
 | N=2 | Validated | Two independent sources agree |
 | N≥3 | Invariant | Candidate for Golden Master |
 
-### Semantic Alignment
+### Semantic Alignment (on Normalized Forms)
 
-Two principles are semantically aligned when:
-- Same idea expressed differently
-- Meaning survives paraphrasing
-- Not just keyword overlap
+Two principles are semantically aligned when their **normalized forms** express the same core value:
+
+**Aligned** (same normalized meaning):
+- A: "Values truthfulness over comfort"
+- B: "Values honesty in difficult situations"
+- Alignment: HIGH — both normalize to "Values honesty/truthfulness"
+
+**Not Aligned** (different meanings):
+- A: "Values speed in delivery"
+- B: "Values safety in delivery"
+- Alignment: NONE — speed ≠ safety despite similar structure
 
 **Aligned**: "Fail fast" (Source A) ≈ "Expose errors immediately" (Source B)
 **Not Aligned**: "Fail fast" ≈ "Fail safely" (keyword overlap, different meaning)
+
+### Normalized Form Selection (Conflict Resolution)
+
+When two principles align, select the canonical normalized form using these criteria (in order):
+
+1. **More abstract**: Prefer the form with broader applicability
+2. **Higher confidence**: Prefer the form from the higher-confidence source
+3. **Tie-breaker**: Use Source A's normalized form
+
+This ensures reproducible outputs when principles from different sources are semantically equivalent but have different normalized phrasings.
 
 ### Promotion Rules
 
@@ -101,10 +118,38 @@ Two principles are semantically aligned when:
 
 ## Comparison Framework
 
+### Step 0: Normalize All Principles
+
+Before comparing, normalize all principles from both sources:
+- Transform to actor-agnostic, imperative form
+- This enables semantic alignment across different phrasings
+
+**Why normalize first?**
+
+| Source A (raw) | Source B (raw) | Match? |
+|----------------|----------------|--------|
+| "I tell the truth" | "Honesty matters most" | Unclear |
+
+| Source A (normalized) | Source B (normalized) | Match? |
+|-----------------------|-----------------------|--------|
+| "Values truthfulness" | "Values honesty above all" | Yes! |
+
+**Normalization Rules**:
+1. Remove pronouns (I, we, you, my, our, your)
+2. Use imperative: "Values X", "Prioritizes Y", "Avoids Z", "Maintains Y"
+3. Abstract domain terms, preserve magnitude in parentheses
+4. Keep conditionals if present
+5. Single sentence, under 100 characters
+
+**When NOT to normalize** (set `normalization_status: "skipped"`):
+- Context-bound principles
+- Numerical thresholds integral to meaning
+- Process-specific step sequences
+
 ### Step 1: Align Extractions
 
 For each principle in Source A:
-- Search Source B for semantic match
+- Search Source B for semantic match using **normalized forms**
 - Score alignment confidence
 - Note evidence from both sources
 
@@ -134,24 +179,29 @@ For principles that appear differently:
   "metadata": {
     "source_a_hash": "a1b2c3d4",
     "source_b_hash": "e5f6g7h8",
-    "timestamp": "2026-02-04T12:00:00Z"
+    "timestamp": "2026-02-04T12:00:00Z",
+    "normalization_version": "v1.0.0"
   },
   "result": {
     "shared_principles": [
       {
-        "id": "P1",
-        "statement": "Compression that preserves meaning demonstrates comprehension",
+        "id": "SP1",
+        "source_a_original": "I always tell the truth",
+        "source_b_original": "Honesty matters most",
+        "normalized_form": "Values truthfulness in communication",
+        "normalization_status": "success",
         "confidence": "high",
         "n_count": 2,
-        "source_a_evidence": "Quote from source A",
-        "source_b_evidence": "Quote from source B",
+        "alignment_confidence": "high",
         "alignment_note": "Identical meaning, different wording"
       }
     ],
     "source_a_only": [
       {
         "id": "A1",
-        "statement": "Principle unique to source A",
+        "statement": "Keep functions small",
+        "normalized_form": "Values concise units of work (~50 lines)",
+        "normalization_status": "success",
         "n_count": 1
       }
     ],
@@ -159,6 +209,8 @@ For principles that appear differently:
       {
         "id": "B1",
         "statement": "Principle unique to source B",
+        "normalized_form": "...",
+        "normalization_status": "success",
         "n_count": 1
       }
     ],
@@ -175,6 +227,12 @@ For principles that appear differently:
   ]
 }
 ```
+
+`normalization_status` values:
+- `"success"`: Normalized without issues
+- `"failed"`: Could not normalize, using original
+- `"drift"`: Meaning may have changed, added to `requires_review.md`
+- `"skipped"`: Intentionally not normalized (context-bound, numerical, process-specific)
 
 ### share_text (When Applicable)
 

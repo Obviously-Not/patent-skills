@@ -71,9 +71,21 @@ A **Golden Master** is a principle that:
 
 | Phase | Action | Output |
 |-------|--------|--------|
-| **Bootstrap** | Gather all principles from all sources | Raw principle collection |
-| **Learn** | Identify which principles appear across sources | Shared principle map |
+| **Bootstrap** | Gather + normalize all principles from all sources | Normalized principle collection |
+| **Learn** | Match normalized forms across sources | Shared principle map |
 | **Enforce** | Validate semantic alignment for N≥3 | Invariant principles |
+
+### Input Normalization Policy
+
+Principle-synthesizer receives inputs from multiple sources with varying normalization states:
+
+| Input State | Action |
+|-------------|--------|
+| Has `normalized_form` + matching `normalization_version` | Use as-is |
+| Has `normalized_form` + old/missing version | Re-normalize, flag version drift |
+| Lacks `normalized_form` (raw text) | Normalize before comparison |
+
+This ensures consistent N-count calculation across heterogeneous inputs.
 
 ### Synthesis Process
 
@@ -122,17 +134,26 @@ A principle achieves N≥3 status when:
     "source_count": 4,
     "source_hashes": ["a1b2c3d4", "e5f6g7h8", "i9j0k1l2", "m3n4o5p6"],
     "timestamp": "2026-02-04T12:00:00Z",
-    "methodology": "bootstrap-learn-enforce"
+    "methodology": "bootstrap-learn-enforce",
+    "normalization_version": "v1.0.0"
   },
   "result": {
     "invariant_principles": [
       {
         "id": "INV-1",
-        "statement": "Compression that preserves meaning demonstrates comprehension",
+        "statement": "Prioritize honesty over comfort",
+        "normalized_form": "Values truthfulness over social comfort",
+        "normalization_status": "success",
         "n_count": 4,
         "confidence": "high",
         "sources_present": ["all"],
         "golden_master_candidate": true,
+        "original_variants": [
+          "I always tell the truth",
+          "Prioritize honesty over comfort",
+          "Never sacrifice truth for peace",
+          "Honesty matters more than comfort"
+        ],
         "evidence": {
           "source_1": "Quote from source 1",
           "source_2": "Quote from source 2",
@@ -145,6 +166,8 @@ A principle achieves N≥3 status when:
       {
         "id": "DS-1",
         "statement": "Domain-specific principle",
+        "normalized_form": "...",
+        "normalization_status": "success",
         "n_count": 2,
         "domains": ["technical", "philosophical"],
         "note": "Not invariant — varies by context"
@@ -160,7 +183,8 @@ A principle achieves N≥3 status when:
     "golden_master_candidates": [
       {
         "id": "INV-1",
-        "statement": "Compression that preserves meaning demonstrates comprehension",
+        "statement": "Prioritize honesty over comfort",
+        "normalized_form": "Values truthfulness over social comfort",
         "rationale": "N=4, high confidence, present in all sources"
       }
     ]
@@ -171,6 +195,21 @@ A principle achieves N≥3 status when:
   ]
 }
 ```
+
+### Voice Preservation in Golden Masters
+
+When creating Golden Master candidates:
+- **Match on**: Normalized forms (for accurate N-count)
+- **Display**: Most representative original phrasing (RECOMMENDED for MVP)
+- **Track**: All contributing original statements in `original_variants`
+
+The Golden Master preserves the user's voice while ensuring accurate pattern matching.
+
+`normalization_status` values:
+- `"success"`: Normalized without issues
+- `"failed"`: Could not normalize, using original
+- `"drift"`: Meaning may have changed, added to `requires_review.md`
+- `"skipped"`: Intentionally not normalized (context-bound, numerical, process-specific)
 
 ### share_text (When Applicable)
 

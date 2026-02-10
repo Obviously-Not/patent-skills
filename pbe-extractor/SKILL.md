@@ -105,6 +105,33 @@ For each potential principle:
 - Assign confidence level
 - Note source evidence
 
+### Step 2.5: Normalize Candidates
+
+For each candidate principle, create a normalized form for semantic matching:
+
+**Normalization Rules**:
+1. **Actor-agnostic**: Remove pronouns (I, we, you, my, our, your)
+2. **Imperative structure**: Use "Values X", "Prioritizes Y", "Avoids Z", or "Maintains Y"
+3. **Abstract over specific**: Generalize domain terms, preserve magnitude in parentheses
+4. **Preserve conditionals**: Keep "when X, then Y" structure if present
+5. **Single sentence**: One principle = one normalized statement (under 100 characters)
+
+**Example**:
+| Original | Normalized |
+|----------|------------|
+| "I always tell the truth" | "Values truthfulness in communication" |
+| "Keep Go functions under 50 lines" | "Values concise units of work (~50 lines)" |
+| "When unsure, ask" | "Values clarification when uncertain" |
+
+**When NOT to Normalize**:
+- Context-bound principles (e.g., "Never ship on Fridays")
+- Numerical thresholds integral to meaning
+- Process-specific step sequences
+
+For these, set `normalization_status: "skipped"` and use original text.
+
+**Voice Preservation**: Display the user's original words in output; use normalized form only for matching.
+
 ### Step 3: Compression Validation
 
 Verify extraction quality:
@@ -136,13 +163,16 @@ Verify extraction quality:
     "source_type": "documentation",
     "word_count_original": 1500,
     "word_count_compressed": 320,
-    "compression_ratio": "79%"
+    "compression_ratio": "79%",
+    "normalization_version": "v1.0.0"
   },
   "result": {
     "principles": [
       {
         "id": "P1",
-        "statement": "Compression that preserves meaning demonstrates comprehension",
+        "statement": "I always tell the truth, even when it's uncomfortable",
+        "normalized_form": "Values truthfulness over comfort",
+        "normalization_status": "success",
         "confidence": "high",
         "n_count": 1,
         "source_evidence": ["Direct quote from source"],
@@ -162,6 +192,12 @@ Verify extraction quality:
   ]
 }
 ```
+
+`normalization_status` values:
+- `"success"`: Normalized without issues
+- `"failed"`: Could not normalize, using original
+- `"drift"`: Meaning may have changed, added to `requires_review.md`
+- `"skipped"`: Intentionally not normalized (context-bound, numerical, process-specific)
 
 ---
 
