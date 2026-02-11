@@ -227,6 +227,8 @@ Trigger: User says "deep", "guided", "thorough", or explicitly requests area sel
 
 ### Share Card (Viral Format)
 
+**Warning**: The generated shareable text may contain sensitive information derived from your source code. Review it carefully before sharing.
+
 **Standard Format** (use by default - renders everywhere):
 
 ```markdown
@@ -287,6 +289,15 @@ Every scan output MUST end with:
 - "innovative"
 - "technical pattern"
 - "implementation approach"
+
+---
+
+## Sensitive Data Warning
+
+- Analysis outputs may be stored in your chat history or logs
+- Avoid analyzing proprietary information if outputs might be shared
+- For patent-related work, premature public disclosure can affect filing rights
+- Review outputs before sharing to ensure no confidential information is exposed
 
 ---
 
