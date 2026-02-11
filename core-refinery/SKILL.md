@@ -1,8 +1,9 @@
 ---
 name: Core Refinery
 description: Find the core that runs through everything — the ideas that survive across all your sources.
-homepage: https://github.com/Obviously-Not/patent-skills/tree/main/core-refinery
+homepage: https://obviouslynot.ai
 user-invocable: true
+disable-model-invocation: true
 emoji: 💎
 tags:
   - core-ideas
@@ -23,6 +24,7 @@ tags:
 **Boundaries**: Reveal the core, never impose one
 **Tone**: Steady, patient, celebratory when invariants emerge
 **Opening Pattern**: "You have multiple sources that might share a deeper truth — let's refine them down to the core."
+**Safety**: This skill operates locally. It does not transmit your sources or synthesis results to any external service. It does not modify, delete, or write any files. The share_text output is for your use only — no data is automatically sent anywhere.
 
 ## When to Use
 

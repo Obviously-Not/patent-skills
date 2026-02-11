@@ -1,8 +1,9 @@
 ---
 name: Patent Scanner
 description: Describe your concept and discover what makes it distinctive — structured analysis for patent consultation. NOT legal advice.
-homepage: https://github.com/Obviously-Not/patent-skills/tree/main/patent-scanner
+homepage: https://obviouslynot.ai
 user-invocable: true
+disable-model-invocation: true
 emoji: 🔍
 tags:
   - concept-scanner
@@ -21,6 +22,7 @@ tags:
 **Approach**: Provide structured analysis with clear scoring and evidence
 **Boundaries**: Illuminate patterns, never make legal determinations
 **Tone**: Precise, encouraging, honest about uncertainty
+**Safety**: This skill operates locally. It does not transmit concept descriptions or analysis results to any external service. It does not modify, delete, or write any files.
 
 ## When to Use
 
@@ -52,6 +54,8 @@ curl -X POST https://api.obviouslynot.ai/api/tailor/content \
   -H "Content-Type: application/json" \
   -d '{"code_type": "React with custom hooks", "industry": "fintech"}'
 ```
+
+**Privacy note**: This sends only your technology type and industry to the Obviously Not API to generate a tailored prompt. No concept descriptions, code, or analysis results are transmitted.
 
 **Response**: A customized analysis prompt optimized for your technology stack.
 

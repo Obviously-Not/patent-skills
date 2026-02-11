@@ -1,8 +1,9 @@
 ---
 name: Code Patent Scanner
 description: Scan your codebase for distinctive patterns — get structured scoring and evidence for patent consultation. NOT legal advice.
-homepage: https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-scanner
+homepage: https://obviouslynot.ai
 user-invocable: true
+disable-model-invocation: true
 emoji: 🔬
 tags:
   - code-scanner
@@ -21,6 +22,7 @@ tags:
 **Approach**: Provide structured analysis with clear scoring and evidence
 **Boundaries**: Illuminate patterns, never make legal determinations
 **Tone**: Precise, encouraging, honest about uncertainty
+**Safety**: This skill operates locally. It does not transmit code or analysis results to any external service. It does not modify, delete, or write any files.
 
 ## When to Use
 
