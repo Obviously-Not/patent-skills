@@ -1,8 +1,9 @@
 ---
 name: Patent Scanner
 description: Describe your concept and discover what makes it distinctive — structured analysis for patent consultation. NOT legal advice.
-homepage: https://github.com/Obviously-Not/patent-skills/tree/main/patent-scanner
+homepage: https://obviouslynot.ai
 user-invocable: true
+disable-model-invocation: true
 emoji: 🔍
 tags:
   - patent
@@ -26,6 +27,7 @@ tags:
 **Approach**: Provide structured analysis with clear scoring and evidence
 **Boundaries**: Illuminate patterns, never make legal determinations
 **Tone**: Precise, encouraging, honest about uncertainty
+**Safety**: This skill operates locally by default. It does not transmit concept descriptions or analysis results. The optional Prompt Tailoring feature (see below) sends only technology type and industry to generate customized prompts. This skill does not modify, delete, or write any files.
 
 ## When to Use
 
@@ -57,6 +59,12 @@ curl -X POST https://api.obviouslynot.ai/api/tailor/content \
   -H "Content-Type: application/json" \
   -d '{"code_type": "React with custom hooks", "industry": "fintech"}'
 ```
+
+**Privacy note**: This sends only your technology type and industry to the Obviously Not API to generate a tailored prompt. No concept descriptions, code, or analysis results are transmitted.
+
+**Stealth-mode warning**: For companies in stealth mode, even the combination of technology type and industry may reveal strategic direction. Consider whether this metadata is sensitive before using the tailoring feature.
+
+**Note**: The tailoring API uses a model backend to generate prompts. The `disable-model-invocation` setting prevents this skill from making direct LLM calls, but the optional tailoring feature does use AI processing on our servers.
 
 **Response**: A customized analysis prompt optimized for your technology stack.
 
@@ -305,6 +313,15 @@ For patterns scoring 8+/13, include:
 - "sophisticated"
 - "existing implementations"
 - "consider consulting attorney"
+
+---
+
+## Sensitive Data Warning
+
+- Analysis outputs may be stored in your chat history or logs
+- Avoid analyzing proprietary information if outputs might be shared
+- For patent-related work, premature public disclosure can affect filing rights
+- Review outputs before sharing to ensure no confidential information is exposed
 
 ---
 

@@ -1,8 +1,9 @@
 ---
 name: Core Refinery
 description: Find the core that runs through everything — the ideas that survive across all your sources.
-homepage: https://github.com/Obviously-Not/patent-skills/tree/main/core-refinery
+homepage: https://obviouslynot.ai
 user-invocable: true
+disable-model-invocation: true
 emoji: 💎
 tags:
   - synthesis
@@ -25,6 +26,7 @@ tags:
 **Boundaries**: Reveal the core, never impose one
 **Tone**: Steady, patient, celebratory when invariants emerge
 **Opening Pattern**: "You have multiple sources that might share a deeper truth — let's refine them down to the core."
+**Safety**: This skill operates locally. It does not transmit your sources or synthesis results to any external service. It does not modify, delete, or write any files. The share_text output is for your use only — no data is automatically sent anywhere.
 
 ## When to Use
 
@@ -182,6 +184,8 @@ If I find Golden Master candidates, I'll include:
 
 This is the culmination of the whole process — genuinely exciting when it happens!
 
+**Warning**: Do not share results publicly if they contain proprietary or confidential information derived from your sources.
+
 ---
 
 ## Error Messages
@@ -210,6 +214,14 @@ If you need formal documentation with precise language, use **principle-synthesi
 - **principle-comparator**: Compare 2 sources (technical)
 - **principle-synthesizer**: Technical version of this skill (formal language)
 - **golden-master**: Track relationships after synthesis
+
+---
+
+## Sensitive Data Warning
+
+- Synthesis outputs may be stored in your chat history or logs
+- Avoid synthesizing proprietary information if outputs might be shared
+- Review outputs before sharing to ensure no confidential information is exposed
 
 ---
 

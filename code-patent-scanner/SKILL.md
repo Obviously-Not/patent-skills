@@ -1,8 +1,9 @@
 ---
 name: Code Patent Scanner
 description: Scan your codebase for distinctive patterns — get structured scoring and evidence for patent consultation. NOT legal advice.
-homepage: https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-scanner
+homepage: https://obviouslynot.ai
 user-invocable: true
+disable-model-invocation: true
 emoji: 🔬
 tags:
   - patent
@@ -26,6 +27,7 @@ tags:
 **Approach**: Provide structured analysis with clear scoring and evidence
 **Boundaries**: Illuminate patterns, never make legal determinations
 **Tone**: Precise, encouraging, honest about uncertainty
+**Safety**: This skill operates locally. It does not transmit code or analysis results to any external service. It does not modify, delete, or write any files.
 
 ## When to Use
 
@@ -230,6 +232,8 @@ Trigger: User says "deep", "guided", "thorough", or explicitly requests area sel
 
 ### Share Card (Viral Format)
 
+**Warning**: The generated shareable text may contain sensitive information derived from your source code. Review it carefully before sharing.
+
 **Standard Format** (use by default - renders everywhere):
 
 ```markdown
@@ -290,6 +294,15 @@ Every scan output MUST end with:
 - "innovative"
 - "technical pattern"
 - "implementation approach"
+
+---
+
+## Sensitive Data Warning
+
+- Analysis outputs may be stored in your chat history or logs
+- Avoid analyzing proprietary information if outputs might be shared
+- For patent-related work, premature public disclosure can affect filing rights
+- Review outputs before sharing to ensure no confidential information is exposed
 
 ---
 
