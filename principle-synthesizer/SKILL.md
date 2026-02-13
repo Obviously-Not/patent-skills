@@ -5,12 +5,15 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/principle-syn
 user-invocable: true
 emoji: ⚗️
 tags:
-  - principle-distillation
-  - multi-source-synthesis
-  - methodology-creation
-  - golden-master
-  - knowledge-compression
-  - invariant-patterns
+  - synthesis
+  - principles
+  - multi-source
+  - consolidation
+  - canonical
+  - merging
+  - knowledge-management
+  - documentation
+  - openclaw
 ---
 
 # Principle Synthesizer

@@ -5,12 +5,17 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/patent-scanne
 user-invocable: true
 emoji: 🔍
 tags:
-  - concept-scanner
-  - patent-analysis
-  - innovation-discovery
+  - patent
+  - patents
+  - patentability
+  - innovation
   - intellectual-property
+  - invention
+  - ideation
+  - brainstorming
   - idea-validation
-  - distinctive-patterns
+  - ai-analysis
+  - openclaw
 ---
 
 # Patent Scanner

@@ -5,12 +5,16 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-v
 user-invocable: true
 emoji: ✅
 tags:
-  - patent-validator
-  - search-strategy
-  - prior-art-research
+  - patent
+  - patents
+  - prior-art
+  - patent-search
+  - research
   - intellectual-property
-  - code-analysis
-  - research-tools
+  - competitor-analysis
+  - due-diligence
+  - validation
+  - openclaw
 ---
 
 # Code Patent Validator

@@ -5,12 +5,15 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/pattern-finde
 user-invocable: true
 emoji: 🧭
 tags:
-  - pattern-discovery
   - comparison
-  - validation
-  - n-count-tracking
-  - knowledge-synthesis
-  - principle-comparison
+  - patterns
+  - common-ground
+  - agreement
+  - analysis
+  - synthesis
+  - alignment
+  - discovery
+  - openclaw
 ---
 
 # Pattern Finder

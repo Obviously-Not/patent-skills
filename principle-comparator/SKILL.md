@@ -5,12 +5,15 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/principle-com
 user-invocable: true
 emoji: ⚖️
 tags:
-  - principle-comparison
-  - pattern-validation
-  - n-count-tracking
-  - knowledge-synthesis
-  - documentation-tools
-  - semantic-alignment
+  - comparison
+  - principles
+  - common-ground
+  - agreement
+  - diff
+  - analysis
+  - alignment
+  - synthesis
+  - openclaw
 ---
 
 # Principle Comparator

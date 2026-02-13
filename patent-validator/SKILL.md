@@ -5,12 +5,16 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/patent-valida
 user-invocable: true
 emoji: 🔎
 tags:
-  - patent-validator
-  - search-strategy
-  - prior-art-research
+  - patent
+  - patents
+  - prior-art
+  - patent-search
+  - research
   - intellectual-property
-  - concept-validation
-  - research-tools
+  - competitor-analysis
+  - due-diligence
+  - validation
+  - openclaw
 ---
 
 # Patent Validator

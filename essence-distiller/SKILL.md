@@ -5,12 +5,16 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/essence-disti
 user-invocable: true
 emoji: ✨
 tags:
-  - essence
+  - summarization
+  - distillation
   - clarity
   - simplification
-  - core-ideas
-  - principle-extraction
-  - semantic-compression
+  - tldr
+  - key-points
+  - extraction
+  - writing
+  - analysis
+  - openclaw
 ---
 
 # Essence Distiller

@@ -5,12 +5,14 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/core-refinery
 user-invocable: true
 emoji: 💎
 tags:
-  - core-ideas
-  - refinement
+  - synthesis
   - multi-source
-  - golden-master
-  - knowledge-compression
-  - invariant-patterns
+  - consolidation
+  - merging
+  - knowledge-management
+  - summarization
+  - analysis
+  - openclaw
 ---
 
 # Core Refinery

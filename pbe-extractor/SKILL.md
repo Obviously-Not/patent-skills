@@ -5,12 +5,15 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/pbe-extractor
 user-invocable: true
 emoji: 📐
 tags:
-  - principle-extraction
-  - semantic-compression
-  - methodology-analysis
-  - knowledge-distillation
-  - documentation-tools
-  - pattern-discovery
+  - extraction
+  - principles
+  - methodology
+  - best-practices
+  - summarization
+  - knowledge-management
+  - documentation
+  - analysis
+  - openclaw
 ---
 
 # PBE Extractor

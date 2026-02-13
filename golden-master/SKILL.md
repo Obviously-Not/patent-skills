@@ -5,12 +5,15 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/golden-master
 user-invocable: true
 emoji: 🏆
 tags:
-  - golden-master
-  - source-tracking
-  - staleness-detection
-  - documentation-tools
-  - checksum-validation
-  - file-relationships
+  - documentation
+  - source-of-truth
+  - freshness
+  - staleness
+  - validation
+  - technical-writing
+  - docs
+  - file-tracking
+  - openclaw
 ---
 
 # Golden Master

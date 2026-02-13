@@ -5,12 +5,17 @@ homepage: https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-s
 user-invocable: true
 emoji: 🔬
 tags:
-  - code-scanner
-  - patent-analysis
-  - innovation-discovery
-  - intellectual-property
+  - patent
+  - patents
+  - patentability
   - code-analysis
-  - distinctive-patterns
+  - innovation
+  - intellectual-property
+  - invention
+  - ideation
+  - brainstorming
+  - ai-analysis
+  - openclaw
 ---
 
 # Code Patent Scanner
