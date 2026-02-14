@@ -1,34 +1,143 @@
-# Patent Skills
+# AI Agent Skills
 
-Proprietary patent-specific skills for Obviously Not.
+Open-source skills for patent analysis and principle extraction. Built on the [Agent Skills](https://agentskills.io) standard.
 
-## Migration Notice
+## What Are Agent Skills?
 
-**PBD skills have moved**: The 7 Principle-Based Design skills (essence-distiller,
-pbe-extractor, pattern-finder, core-refinery, golden-master, principle-comparator,
-principle-synthesizer) are now open source at:
+Agent skills are portable instructions that extend what AI coding agents can do. Each skill is a `SKILL.md` file — a Markdown document with YAML frontmatter that any compatible agent can read and execute.
 
-https://github.com/live-neon/skills/tree/main/pbd
+The [Agent Skills standard](https://agentskills.io) was originated by Anthropic and adopted by 27+ tools including Claude Code, Gemini CLI, Codex CLI, Cursor, GitHub Copilot, Goose, and more. Write once, use everywhere.
 
-## Skills
+### Format
 
-| Skill | Description |
-|-------|-------------|
-| code-patent-scanner | Scan codebases for patentable innovations |
-| code-patent-validator | Validate patent claims against code |
-| patent-scanner | General patent discovery |
-| patent-validator | Patent claim validation |
+```
+skill-name/
+  SKILL.md           # Required — instructions + YAML frontmatter
+  scripts/           # Optional — executable code
+  references/        # Optional — detailed docs loaded on demand
+  assets/            # Optional — templates, data files
+```
+
+The `SKILL.md` file contains:
+
+```yaml
+---
+name: skill-name
+description: What this skill does and when to use it.
+---
+
+# Instructions
+
+Step-by-step instructions the agent follows...
+```
+
+Agents read the `description` field to decide when to activate the skill. The Markdown body contains the full instructions, loaded on demand to keep context usage efficient.
 
 ## Installation
 
+### Claude Code / Gemini CLI / Cursor
+
+Clone the repo and copy any skill into your agent's skills directory:
+
 ```bash
-# Clone to your Claude Code skills directory
-git clone git@github.com:Obviously-Not/patent-skills.git ~/.claude/skills/patent
+git clone https://github.com/Obviously-Not/patent-skills
+cp -r patent-skills/code-patent-scanner .claude/skills/
 ```
+
+The skill becomes available as a `/code-patent-scanner` slash command. Claude Code (and other compatible agents) will also auto-invoke it when it detects a relevant task.
+
+**Project-level** (shared with your team via version control):
+```
+your-project/.claude/skills/code-patent-scanner/SKILL.md
+```
+
+**Personal** (available in all your projects):
+```
+~/.claude/skills/code-patent-scanner/SKILL.md
+```
+
+### Any LLM Agent (Copy/Paste)
+
+Open the `SKILL.md` file on GitHub, copy the contents, and paste directly into your agent's chat. The agent will follow the instructions immediately. This works with any LLM — no special setup required.
+
+### OpenClaw
+
+```bash
+clawhub install leegitw/code-patent-scanner
+```
+
+Skills install to `./skills/` and OpenClaw loads them automatically.
+
+## Skills Catalog
+
+### Patent Analysis
+
+These skills help you discover and validate patentable patterns in code and concepts.
+
+| Skill | What It Does | Start Here? |
+|-------|-------------|-------------|
+| **[Code Patent Scanner](https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-scanner)** | Scans your codebase for distinctive patterns. Returns structured scoring and evidence for patent consultation. | Yes — for code |
+| **[Code Patent Validator](https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-validator)** | Takes scanner findings and generates search queries to research existing implementations. | Use after Code Patent Scanner |
+| **[Patent Scanner](https://github.com/Obviously-Not/patent-skills/tree/main/patent-scanner)** | Describe your concept and discover what makes it distinctive. Structured analysis for patent consultation. | Yes — for concepts |
+| **[Patent Validator](https://github.com/Obviously-Not/patent-skills/tree/main/patent-validator)** | Takes concept analysis and generates search queries to research the landscape. | Use after Patent Scanner |
+
+**Recommended workflow:** Scanner → Validator → Research → Attorney
+
+Start with the appropriate Scanner to identify patterns, then use the matching Validator to generate search strategies. Use those strategies for your own research, then bring your findings to a patent attorney.
+
+### Principle-Based Extraction
+
+These skills extract and compare the invariant ideas that survive any rephrasing — useful for understanding what's actually novel in your work.
+
+| Skill | What It Does | When to Use |
+|-------|-------------|------------|
+| **[PBE Extractor](https://github.com/live-neon/skills/tree/main/pbd/pbe-extractor)** | Extracts invariant principles from any text. Finds the ideas that survive rephrasing. | First step — extract before comparing or synthesizing |
+| **[Principle Comparator](https://github.com/live-neon/skills/tree/main/pbd/principle-comparator)** | Compares two sources to find shared and divergent principles. | After extraction — with 2 sources |
+| **[Principle Synthesizer](https://github.com/live-neon/skills/tree/main/pbd/principle-synthesizer)** | Synthesizes invariant principles from 3+ sources. Finds the core that survives across all expressions. | After extraction — with 3+ sources |
+| **[Essence Distiller](https://github.com/live-neon/skills/tree/main/pbd/essence-distiller)** | Finds what actually matters in your content. The ideas that survive any rephrasing. | Extract first, then compare or refine |
+| **[Pattern Finder](https://github.com/live-neon/skills/tree/main/pbd/pattern-finder)** | Discovers what two sources agree on. Finds the signal in the noise. | After extraction — with 2 sources |
+
+### Advanced
+
+| Skill | What It Does | When to Use |
+|-------|-------------|------------|
+| **[Core Refinery](https://github.com/live-neon/skills/tree/main/pbd/core-refinery)** | Finds the core that runs through everything. The ideas that survive across all your sources. | After 3+ extractions |
+| **[Golden Master](https://github.com/live-neon/skills/tree/main/pbd/golden-master)** | Tracks source-of-truth relationships between files. Knows when derived content becomes stale. | After synthesis — track derivations |
+
+## Important Disclaimer
+
+**These skills are not legal advice.** They identify technical patterns, not patentability.
+
+What they DO:
+- Identify distinctive patterns in code and concepts
+- Generate search queries for prior art research
+- Suggest research strategies
+- Document technical evidence
+
+What they DON'T:
+- Search patent databases
+- Assess patentability
+- Provide legal conclusions
+- Replace professional counsel
+
+Always consult a patent attorney for IP guidance.
+
+## Related Projects
+
+- **[Live Neon Skills](https://github.com/live-neon/skills)** - Open-source PBD skills for principle extraction and synthesis. The 7 PBD skills were migrated from this repo to live-neon/skills.
+- **[NEON-SOUL](https://github.com/live-neon/neon-soul)** - Soul synthesis for AI agents, using PBD skills for principle extraction and compression.
+
+## Links
+
+- **Skills page:** [obviouslynot.ai/skills](https://obviouslynot.ai/skills)
+- **GitHub:** [github.com/Obviously-Not/patent-skills](https://github.com/Obviously-Not/patent-skills)
+- **ClawHub:** [clawhub.ai](https://clawhub.ai) (search "leegitw")
+- **Agent Skills standard:** [agentskills.io](https://agentskills.io)
+- **ObviouslyNot:** [obviouslynot.ai](https://obviouslynot.ai)
 
 ## License
 
-Proprietary. Contact us for access.
+MIT License - see [LICENSE](LICENSE)
 
 ---
 
