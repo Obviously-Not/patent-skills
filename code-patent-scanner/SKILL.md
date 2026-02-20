@@ -29,6 +29,37 @@ tags:
 **Tone**: Precise, encouraging, honest about uncertainty
 **Safety**: This skill operates locally. It does not transmit code or analysis results to any external service. It does not modify, delete, or write any files.
 
+## Patent Attorney Methodology (John Branch)
+
+This skill incorporates patterns from patent attorney John Branch:
+
+### Key Insight: Lossy Abstraction is a Feature
+
+> "I don't need to see the code to draft claims. I need to understand what the
+> invention IS." — John Branch
+
+**Why this matters**: Broad claims are harder to design around. Implementation
+details limit claim scope. Focus on the INVENTION, not the IMPLEMENTATION.
+
+### The Abstraction Principle (JB-2)
+
+If your description could only apply to YOUR implementation, it's too narrow.
+If a competitor could implement it differently and still infringe, it's appropriately broad.
+
+When analyzing code, abstract from implementation to inventive concept:
+
+| Implementation (Skip) | Abstraction (Use) |
+|----------------------|-------------------|
+| "calls bcrypt.compare()" | "applies cryptographic one-way function" |
+| "stores in PostgreSQL" | "persists to durable storage" |
+| "uses Redis for caching" | "maintains transient state in memory store" |
+| "sends HTTP POST request" | "transmits data via network protocol" |
+| "parses JSON response" | "deserializes structured data format" |
+
+**Enablement preservation**: Keep both abstract and concrete references:
+- `abstract_mechanism`: "applies cryptographic one-way function"
+- `concrete_reference`: "bcrypt.compare() at auth/verify.go:45"
+
 ## When to Use
 
 Activate this skill when the user asks to:
@@ -108,6 +139,42 @@ For each prioritized file, analyze for these pattern categories:
 - Unusual system integrations
 - Performance-optimized I/O
 
+#### 3.5 Abstraction Check (JB-2)
+
+For each pattern, verify abstraction level:
+
+- ❌ WRONG: "Uses bcrypt library to hash passwords"
+- ✅ RIGHT: "Applies cryptographic transformation to authentication credentials"
+
+If your description mentions specific libraries, frameworks, or implementation
+details, abstract up one level. Keep both abstract and concrete references.
+
+#### 3.6 Problem-Solution-Benefit Mapping (JB-1)
+
+Structure each pattern as:
+
+| Element | Question |
+|---------|----------|
+| **Problem** | What specific technical limitation exists? |
+| **Solution** | How does this approach address it (explain HOW)? |
+| **Benefit** | What measurable advantage results? |
+
+#### 3.7 Claim Angle Generation (JB-5)
+
+For high-scoring patterns (≥8), generate three claim framings:
+
+1. **Method claim**: "A method for [verb]ing, comprising the steps of..."
+2. **System claim**: "A system comprising: [component] configured to..."
+3. **Apparatus claim**: "An apparatus for [function], the apparatus including..."
+
+**Example** (same pattern, three angles):
+
+> **Pattern**: Credential caching with cryptographic session binding
+
+- **Method**: "A method for authenticating users comprising caching encrypted credentials bound to session identifiers and validating without database lookup"
+- **System**: "A system comprising a credential cache, a cryptographic binding module, and a validation engine configured to verify credentials from cache"
+- **Apparatus**: "An apparatus for stateless authentication including memory-resident credential storage and hash-based binding verification"
+
 ### Step 4: Distinctiveness Scoring
 
 For each identified pattern, score on four dimensions:
@@ -147,6 +214,25 @@ For each identified pattern, score on four dimensions:
 - 3: Redefines the problem entirely
 
 **Minimum Threshold**: Only report patterns with total score >= 5
+
+### Patent Value Signals (JB-3)
+
+In addition to the distinctiveness score, assess patent value signals:
+
+| Signal | Range | Criteria |
+|--------|-------|----------|
+| **Market Demand** | low/medium/high | Would customers pay for this capability? |
+| **Competitive Value** | low/medium/high | Is this worth disclosing via patent? |
+| **Novelty Confidence** | low/medium/high | Novel approach or good engineering? |
+
+**Scoring Guide**:
+- **Market Demand**: Does this solve a problem customers actively seek solutions for?
+- **Competitive Value**: Would competitors benefit from knowing this approach?
+- **Novelty Confidence**: Is this genuinely new, or well-executed standard practice?
+
+**Advisory signals**: JB-3 signals are advisory only — displayed alongside the 4-dimension
+score but do NOT affect the reporting threshold (≥5). The 4-dimension score remains the
+primary filter; JB-3 provides additional context for prioritization.
 
 ---
 
@@ -214,7 +300,24 @@ Trigger: User says "deep", "guided", "thorough", or explicitly requests area sel
         "frame_shift": 1,
         "total": 8
       },
-      "why_distinctive": "What makes this stand out"
+      "why_distinctive": "What makes this stand out",
+      "problem_solution_benefit": {
+        "problem": "Specific technical limitation (e.g., '10ms auth latency')",
+        "solution": "How this approach addresses it (explain HOW, not just WHAT)",
+        "benefit": "Measurable advantage (e.g., 'reduces p99 to <2ms')"
+      },
+      "patent_signals": {
+        "market_demand": "low|medium|high",
+        "competitive_value": "low|medium|high",
+        "novelty_confidence": "low|medium|high"
+      },
+      "claim_angles": [
+        "Method for [verb]ing comprising...",
+        "System comprising [component] configured to...",
+        "Apparatus for [function] including..."
+      ],
+      "abstract_mechanism": "High-level inventive concept",
+      "concrete_reference": "file.go:45 - specific implementation"
     }
   ],
   "summary": {
@@ -241,13 +344,15 @@ Trigger: User says "deep", "guided", "thorough", or explicitly requests area sel
 
 **[N] Distinctive Patterns Found**
 
-| Pattern | Score |
-|---------|-------|
-| Pattern Name 1 | X/13 |
-| Pattern Name 2 | X/13 |
+| Pattern | Score | Signals |
+|---------|-------|---------|
+| Pattern Name 1 | X/13 | 🟢 Market 🟡 Competitive 🟢 Novelty |
+| Pattern Name 2 | X/13 | 🟡 Market 🟢 Competitive 🟡 Novelty |
 
 *Analyzed with [code-patent-scanner](https://obviouslynot.ai) from obviouslynot.ai*
 ```
+
+**Signal indicators**: 🟢 = high, 🟡 = medium, ⚪ = low
 
 ### High-Value Pattern Detected
 

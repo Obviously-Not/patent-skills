@@ -26,6 +26,20 @@ tags:
 **Boundaries**: Equip users for research, never perform searches or draw conclusions
 **Tone**: Thorough, supportive, clear about next steps
 
+## Validator Role
+
+This skill validates scanner findings — it does NOT re-score patterns.
+
+**Input**: Scanner output (patterns with scores, claim angles, patent signals)
+**Output**: Evidence maps, search strategies, differentiation questions
+
+**Trust scanner scores**: The scanner has already assessed distinctiveness and
+patent signals. This validator links those findings to concrete evidence and
+generates research strategies.
+
+**What this means for users**: Validators are simpler and faster. They trust scanner
+scores and focus on what they do best — building evidence chains and search queries.
+
 ## When to Use
 
 Activate this skill when the user asks to:
@@ -124,7 +138,21 @@ Prioritize sources based on pattern type:
 | Software-adjacent | Patents -> GitHub -> Publications |
 | Research/Academic | Publications -> Patents -> Products |
 
-### 3. Differentiation Analysis Framework
+### 3. Evidence Mapping (JB-4)
+
+For each scanner pattern, build a provenance chain linking claim angles to evidence:
+
+| Evidence Type | What to Document | Why It Matters |
+|---------------|------------------|----------------|
+| **Prototypes** | demo-v1 | Proves concept works |
+| **Timeline** | First conceived 2026-01 | Establishes priority |
+| **Documentation** | Design spec | Shows intentional innovation |
+| **Validation** | User testing results | Quantifies benefit |
+
+**Provenance chain**: Each claim angle (from scanner) traces to specific evidence.
+This creates a clear trail from abstract claim to concrete validation.
+
+### 4. Differentiation Analysis Framework
 
 Questions to guide analysis of search results:
 
@@ -156,9 +184,15 @@ Questions to guide analysis of search results:
   },
   "patterns": [
     {
-      "pattern_id": "from-scanner",
+      "scanner_input": {
+        "pattern_id": "from-scanner",
+        "claim_angles": ["Method for...", "System comprising..."],
+        "patent_signals": {"market_demand": "high", "competitive_value": "medium", "novelty_confidence": "high"}
+      },
       "title": "Pattern Title",
       "search_queries": {
+        "problem_focused": ["[problem] solution approach"],
+        "benefit_focused": ["[benefit] implementation method"],
         "google_patents": ["query1", "query2", "query3"],
         "uspto": ["CPC:query1", "keyword query"],
         "google_scholar": ["academic query"],
@@ -172,10 +206,20 @@ Questions to guide analysis of search results:
         "How does your approach differ from [X]?",
         "What technical barrier did you overcome?"
       ],
-      "evidence_checklist": [
-        "Document technical specifications",
-        "Note development timeline"
-      ]
+      "evidence_map": {
+        "claim_angle_1": {
+          "prototypes": ["demo-v1"],
+          "timeline": "First conceived 2026-01",
+          "documentation": ["Design spec v2"],
+          "validation": {"user_tests": 12, "success_rate": "85%"}
+        },
+        "claim_angle_2": {
+          "prototypes": [],
+          "timeline": "First conceived 2026-02",
+          "documentation": ["Whiteboard sketch"],
+          "validation": {}
+        }
+      }
     }
   ],
   "next_steps": [

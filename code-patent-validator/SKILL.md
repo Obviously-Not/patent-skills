@@ -26,6 +26,20 @@ tags:
 **Boundaries**: Equip users for research, never perform searches or draw conclusions
 **Tone**: Thorough, supportive, clear about next steps
 
+## Validator Role
+
+This skill validates scanner findings — it does NOT re-score patterns.
+
+**Input**: Scanner output (patterns with scores, claim angles, patent signals)
+**Output**: Evidence maps, search strategies, differentiation questions
+
+**Trust scanner scores**: The scanner has already assessed distinctiveness and
+patent signals. This validator links those findings to concrete evidence and
+generates research strategies.
+
+**What this means for users**: Validators are simpler and faster. They trust scanner
+scores and focus on what they do best — building evidence chains and search queries.
+
 ## When to Use
 
 Activate this skill when the user asks to:
@@ -102,7 +116,21 @@ Suggest which sources to search first based on pattern type:
 | Data Structure | GitHub -> Publications -> Patents |
 | Integration | Stack Overflow -> GitHub -> Publications |
 
-### 3. Differentiation Questions
+### 3. Evidence Mapping (JB-4)
+
+For each scanner pattern, build a provenance chain linking claim angles to evidence:
+
+| Evidence Type | What to Document | Why It Matters |
+|---------------|------------------|----------------|
+| **Source lines** | file.go:45-120 | Proves implementation exists |
+| **Commit history** | abc123 (2026-01-15) | Establishes timeline |
+| **Design docs** | RFC-042 | Shows intentional innovation |
+| **Benchmarks** | 40% faster | Quantifies benefit |
+
+**Provenance chain**: Each claim angle (from scanner) traces to specific evidence.
+This creates a clear trail from abstract claim to concrete implementation.
+
+### 4. Differentiation Questions
 
 Questions to guide user's analysis of search results:
 
@@ -134,9 +162,15 @@ Questions to guide user's analysis of search results:
   },
   "patterns": [
     {
-      "pattern_id": "from-scanner",
+      "scanner_input": {
+        "pattern_id": "from-scanner",
+        "claim_angles": ["Method for...", "System comprising..."],
+        "patent_signals": {"market_demand": "high", "competitive_value": "medium", "novelty_confidence": "high"}
+      },
       "title": "Pattern Title",
       "search_queries": {
+        "problem_focused": ["[problem] solution approach"],
+        "benefit_focused": ["[benefit] implementation method"],
         "google_patents": ["query1", "query2"],
         "uspto": ["query1"],
         "github": ["query1"],
@@ -150,10 +184,19 @@ Questions to guide user's analysis of search results:
         "How does your approach differ from [X]?",
         "What technical barrier did you overcome?"
       ],
-      "evidence": {
-        "files": ["path/to/file.go:45-120"],
-        "commits": ["abc123"],
-        "metrics": {"performance_gain": "40%"}
+      "evidence_map": {
+        "claim_angle_1": {
+          "source_files": ["path/to/file.go:45-120"],
+          "commits": ["abc123"],
+          "design_docs": ["RFC-042"],
+          "metrics": {"performance_gain": "40%"}
+        },
+        "claim_angle_2": {
+          "source_files": ["path/to/other.go:10-50"],
+          "commits": ["def456"],
+          "design_docs": [],
+          "metrics": {}
+        }
       }
     }
   ],

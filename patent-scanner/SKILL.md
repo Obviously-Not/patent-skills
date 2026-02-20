@@ -29,6 +29,33 @@ tags:
 **Tone**: Precise, encouraging, honest about uncertainty
 **Safety**: This skill operates entirely locally. It does not transmit concept descriptions, analysis results, or any data to external services. This skill does not modify, delete, or write any files.
 
+## Patent Attorney Methodology (John Branch)
+
+This skill incorporates patterns from patent attorney John Branch:
+
+### Key Insight: Lossy Abstraction is a Feature
+
+> "I don't need to see the code to draft claims. I need to understand what the
+> invention IS." — John Branch
+
+**Why this matters**: Broad claims are harder to design around. Implementation
+details limit claim scope. Focus on the INVENTION, not the IMPLEMENTATION.
+
+### The Abstraction Principle (JB-2)
+
+If your description could only apply to YOUR implementation, it's too narrow.
+If a competitor could implement it differently and still infringe, it's appropriately broad.
+
+When describing concepts, abstract from specific implementations:
+
+| Concept Description (Skip) | Abstraction (Use) |
+|---------------------------|-------------------|
+| "Uses machine learning to predict" | "Applies pattern recognition to forecast" |
+| "Blockchain-based verification" | "Distributed consensus validation" |
+| "GPS tracking of shipments" | "Location-aware logistics coordination" |
+| "Natural language processing" | "Semantic content analysis" |
+| "Cloud-based storage" | "Remotely accessible persistent data" |
+
 ## When to Use
 
 Activate this skill when the user asks to:
@@ -104,6 +131,35 @@ Evaluate sophistication:
 - Challenges in existing implementations
 - What makes this approach different
 
+### 5. Problem-Solution-Benefit Mapping (JB-1)
+
+Structure each pattern as:
+
+| Element | Question |
+|---------|----------|
+| **Problem** | What specific technical limitation exists today? |
+| **Solution** | How does this approach address it (explain HOW)? |
+| **Benefit** | What measurable advantage results? |
+
+**Quality check**: Problem must be SPECIFIC, Solution must explain HOW (not just WHAT),
+Benefit must be MEASURABLE.
+
+### 6. Claim Angle Generation (JB-5)
+
+For high-scoring patterns (≥8), generate three claim framings:
+
+1. **Method claim**: Process steps
+2. **System claim**: Components and their arrangement
+3. **Apparatus claim**: Physical or logical structure
+
+**Example** (same pattern, three angles):
+
+> **Pattern**: Real-time collaborative editing with conflict resolution
+
+- **Method**: "A method for synchronizing document edits comprising detecting concurrent changes, applying operational transformation, and merging without data loss"
+- **System**: "A system comprising an edit detection module, a transformation engine, and a conflict resolver configured to merge concurrent modifications"
+- **Apparatus**: "An apparatus for collaborative authoring including change buffers, transformation logic, and consistency enforcement mechanisms"
+
 ---
 
 ## Scoring Guide
@@ -132,6 +188,20 @@ Evaluate sophistication:
 - 1: Questions one assumption
 - 2: Challenges core approach
 - 3: Redefines the problem entirely
+
+### Patent Value Signals (JB-3)
+
+In addition to the distinctiveness score, assess patent value signals:
+
+| Signal | Range | Criteria |
+|--------|-------|----------|
+| **Market Demand** | low/medium/high | Would customers pay for this capability? |
+| **Competitive Value** | low/medium/high | Is this worth disclosing via patent? |
+| **Novelty Confidence** | low/medium/high | Novel approach or good engineering? |
+
+**Advisory signals**: JB-3 signals are advisory only — displayed alongside the 4-dimension
+score but do NOT affect the reporting threshold (≥8). The 4-dimension score remains the
+primary filter; JB-3 provides additional context for prioritization.
 
 ---
 
@@ -167,7 +237,22 @@ Evaluate sophistication:
       "evidence": {
         "user_claims": ["Stated differentiators"],
         "technical_details": ["Specific mechanisms described"]
-      }
+      },
+      "problem_solution_benefit": {
+        "problem": "Specific technical limitation",
+        "solution": "How this approach addresses it (HOW, not WHAT)",
+        "benefit": "Measurable advantage"
+      },
+      "patent_signals": {
+        "market_demand": "low|medium|high",
+        "competitive_value": "low|medium|high",
+        "novelty_confidence": "low|medium|high"
+      },
+      "claim_angles": [
+        "Method for [verb]ing comprising...",
+        "System comprising [component] configured to...",
+        "Apparatus for [function] including..."
+      ]
     }
   ],
   "summary": {
@@ -239,13 +324,15 @@ Evaluate sophistication:
 
 **[N] Distinctive Patterns Found**
 
-| Pattern | Score |
-|---------|-------|
-| [Pattern 1 Title] | X/13 |
-| [Pattern 2 Title] | X/13 |
+| Pattern | Score | Signals |
+|---------|-------|---------|
+| [Pattern 1 Title] | X/13 | 🟢 Market 🟡 Competitive 🟢 Novelty |
+| [Pattern 2 Title] | X/13 | 🟡 Market 🟢 Competitive 🟡 Novelty |
 
 *Analyzed with [patent-scanner](https://obviouslynot.ai) from obviouslynot.ai*
 ```
+
+**Signal indicators**: 🟢 = high, 🟡 = medium, ⚪ = low
 
 ### High-Value Pattern Detected
 
