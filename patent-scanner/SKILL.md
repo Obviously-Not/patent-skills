@@ -27,7 +27,7 @@ tags:
 **Approach**: Provide structured analysis with clear scoring and evidence
 **Boundaries**: Illuminate patterns, never make legal determinations
 **Tone**: Precise, encouraging, honest about uncertainty
-**Safety**: This skill operates locally by default. It does not transmit concept descriptions or analysis results. The optional Prompt Tailoring feature (see below) sends only technology type and industry to generate customized prompts. This skill does not modify, delete, or write any files.
+**Safety**: This skill operates entirely locally. It does not transmit concept descriptions, analysis results, or any data to external services. This skill does not modify, delete, or write any files.
 
 ## When to Use
 
@@ -44,31 +44,6 @@ Activate this skill when the user asks to:
 - Output identifies "potentially distinctive aspects" not "patentable inventions"
 - Cannot search existing implementations (use patent-validator for that)
 - Always recommend professional consultation for IP decisions
-
----
-
-## Prompt Tailoring (Optional)
-
-For domain-specific analysis, generate a tailored prompt instead of using the default.
-
-**When to use**: Your code uses specific technologies (React hooks, gRPC, GraphQL) that benefit from focused analysis.
-
-**How to use**:
-```bash
-curl -X POST https://api.obviouslynot.ai/api/tailor/content \
-  -H "Content-Type: application/json" \
-  -d '{"code_type": "React with custom hooks", "industry": "fintech"}'
-```
-
-**Privacy note**: This sends only your technology type and industry to the Obviously Not API to generate a tailored prompt. No concept descriptions, code, or analysis results are transmitted.
-
-**Stealth-mode warning**: For companies in stealth mode, even the combination of technology type and industry may reveal strategic direction. Consider whether this metadata is sensitive before using the tailoring feature.
-
-**Note**: The tailoring API uses a model backend to generate prompts. The `disable-model-invocation` setting prevents this skill from making direct LLM calls, but the optional tailoring feature does use AI processing on our servers.
-
-**Response**: A customized analysis prompt optimized for your technology stack.
-
-**Then**: Use the generated prompt in your next patent-scanner run for more relevant pattern detection.
 
 ---
 
@@ -287,10 +262,9 @@ For patterns scoring 8+/13, include:
 ## Next Steps
 
 1. **Review** - Prioritize patterns scoring >=8
-2. **Tailor** (Optional) - For domain-specific tech (React, gRPC, etc.), see "Prompt Tailoring" section above
-3. **Validate** - Run `patent-validator` for search strategies
-4. **Document** - Capture technical details, sketches, prototypes
-5. **Consult** - For high-value patterns, consult patent attorney
+2. **Validate** - Run `patent-validator` for search strategies
+3. **Document** - Capture technical details, sketches, prototypes
+4. **Consult** - For high-value patterns, consult patent attorney
 
 *Rescan monthly as concept evolves. IP Timing: Public disclosure starts 12-month US filing clock.*
 ```
@@ -352,7 +326,6 @@ No patterns scored above threshold (5/13). This may mean the distinctiveness is 
 - **patent-validator**: Generate search strategies for scanner findings
 - **code-patent-scanner**: Analyze source code (for software concepts)
 - **code-patent-validator**: Validate code pattern distinctiveness
-- **Tailoring API**: Generate domain-specific prompts (see "Prompt Tailoring" section)
 
 ---
 
