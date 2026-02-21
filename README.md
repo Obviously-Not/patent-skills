@@ -122,6 +122,50 @@ What they DON'T:
 
 Always consult a patent attorney for IP guidance.
 
+## Free Tier Options
+
+These skills work with any LLM. You don't need a paid subscription to use them.
+
+### Option 1: Local LLM (Privacy-First)
+
+Run entirely on your machine with [Ollama](https://ollama.ai):
+
+```bash
+# Install Ollama
+brew install ollama  # macOS
+# or download from https://ollama.ai
+
+# Pull a capable model (32B recommended for patent analysis)
+ollama pull qwen2.5:32b
+
+# Run with your agent
+# Skills work with any agent that can call local models
+```
+
+**System requirements:** 32GB RAM recommended for 32B models, 16GB minimum for 7B models.
+
+For detailed local LLM setup with patent-scanner CLI, see [Local LLM Documentation](https://github.com/Obviously-Not/writer/blob/main/cmd/patent-scanner/README.md#quick-start-local-llm).
+
+### Option 2: BYOK (Bring Your Own Key)
+
+Use your own API key with any provider:
+
+**OpenRouter** (access to 100+ models):
+```bash
+export OPENROUTER_API_KEY="sk-or-..."
+# Skills automatically use OpenRouter when key is set
+```
+
+**Google AI Studio** (free tier available):
+```bash
+export GEMINI_API_KEY="..."
+# Get free key at https://aistudio.google.com/apikey
+```
+
+### Option 3: Agent's Built-in Model
+
+Most AI coding agents (Claude Code, Cursor, Copilot) include their own model access. Just install the skill and use it — no additional API key needed.
+
 ## Related Projects
 
 - **[Live Neon Skills](https://github.com/live-neon/skills)** - Open-source PBD skills for principle extraction and synthesis. The 7 PBD skills were migrated from this repo to live-neon/skills.
