@@ -144,7 +144,7 @@ ollama pull qwen2.5:32b
 
 **System requirements:** 32GB RAM recommended for 32B models, 16GB minimum for 7B models.
 
-For detailed local LLM setup with patent-scanner CLI, see [Local LLM Documentation](https://github.com/Obviously-Not/writer/blob/main/cmd/patent-scanner/README.md#quick-start-local-llm).
+**Model recommendations:** For patent analysis, larger models (32B+) produce better results. `qwen2.5:32b` and `llama3.1:70b` work well. See [Ollama's model library](https://ollama.ai/library) for options.
 
 ### Option 2: BYOK (Bring Your Own Key)
 
