@@ -216,13 +216,13 @@ primary filter; JB-3 provides additional context for prioritization.
   },
   "patterns": [
     {
-      "id": "pattern-1",
+      "pattern_id": "pattern-1",
       "title": "Descriptive Pattern Title",
       "category": "process|hardware|software|method",
       "components": [
         {"name": "Component A", "domain": "source field", "role": "what it does"}
       ],
-      "scores": {
+      "score": {
         "distinctiveness": 3,
         "sophistication": 2,
         "system_impact": 2,
@@ -248,11 +248,14 @@ primary filter; JB-3 provides additional context for prioritization.
         "competitive_value": "low|medium|high",
         "novelty_confidence": "low|medium|high"
       },
+      "_claim_angles_note": "Always present: only patterns >=8 are reported, claim_angles generated for all >=8",
       "claim_angles": [
         "Method for [verb]ing comprising...",
         "System comprising [component] configured to...",
         "Apparatus for [function] including..."
-      ]
+      ],
+      "abstract_mechanism": "High-level inventive concept",
+      "concrete_reference": "Specific implementation reference"
     }
   ],
   "summary": {
@@ -403,7 +406,7 @@ I need more detail to generate useful analysis. What's the technical mechanism? 
 
 **No Distinctive Aspects Found**:
 ```
-No patterns scored above threshold (5/13). This may mean the distinctiveness is in execution, not architecture. Try adding more specific technical details about HOW it works.
+No patterns scored above threshold (8/13). This may mean the distinctiveness is in execution, not architecture. Try adding more specific technical details about HOW it works.
 ```
 
 ---

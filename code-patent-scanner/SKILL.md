@@ -213,7 +213,7 @@ For each identified pattern, score on four dimensions:
 - 2: Challenges core approach
 - 3: Redefines the problem entirely
 
-**Minimum Threshold**: Only report patterns with total score >= 5
+**Minimum Threshold**: Only report patterns with total score >= 8
 
 ### Patent Value Signals (JB-3)
 
@@ -225,14 +225,14 @@ In addition to the distinctiveness score, assess patent value signals:
 | **Competitive Value** | low/medium/high | Is this worth disclosing via patent? |
 | **Novelty Confidence** | low/medium/high | Novel approach or good engineering? |
 
+**Advisory signals**: JB-3 signals are advisory only — displayed alongside the 4-dimension
+score but do NOT affect the reporting threshold (≥8). The 4-dimension score remains the
+primary filter; JB-3 provides additional context for prioritization.
+
 **Scoring Guide**:
 - **Market Demand**: Does this solve a problem customers actively seek solutions for?
 - **Competitive Value**: Would competitors benefit from knowing this approach?
 - **Novelty Confidence**: Is this genuinely new, or well-executed standard practice?
-
-**Advisory signals**: JB-3 signals are advisory only — displayed alongside the 4-dimension
-score but do NOT affect the reporting threshold (≥5). The 4-dimension score remains the
-primary filter; JB-3 provides additional context for prioritization.
 
 ---
 
@@ -311,6 +311,7 @@ Trigger: User says "deep", "guided", "thorough", or explicitly requests area sel
         "competitive_value": "low|medium|high",
         "novelty_confidence": "low|medium|high"
       },
+      "_claim_angles_note": "Always present: only patterns >=8 are reported, claim_angles generated for all >=8",
       "claim_angles": [
         "Method for [verb]ing comprising...",
         "System comprising [component] configured to...",
@@ -428,7 +429,7 @@ I couldn't find source files to analyze. Is the path correct? Does it contain co
 
 **No Patterns Found**:
 ```
-No patterns scored above threshold (5/13). This may mean the distinctiveness is in execution, not architecture. Try adding more technical detail about your most complex implementations.
+No patterns scored above threshold (8/13). This may mean the distinctiveness is in execution, not architecture. Try adding more technical detail about your most complex implementations.
 ```
 
 ---
