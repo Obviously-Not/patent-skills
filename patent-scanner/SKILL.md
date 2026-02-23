@@ -3,7 +3,6 @@ name: Patent Scanner
 description: Describe your concept and discover what makes it distinctive — structured analysis for patent consultation. NOT legal advice.
 homepage: https://obviouslynot.ai
 user-invocable: true
-disable-model-invocation: true
 emoji: 🔍
 tags:
   - patent

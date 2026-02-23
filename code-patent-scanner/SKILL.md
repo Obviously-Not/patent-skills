@@ -3,7 +3,6 @@ name: Code Patent Scanner
 description: Scan your codebase for distinctive patterns — get structured scoring and evidence for patent consultation. NOT legal advice.
 homepage: https://obviouslynot.ai
 user-invocable: true
-disable-model-invocation: true
 emoji: 🔬
 tags:
   - patent
