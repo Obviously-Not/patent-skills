@@ -171,6 +171,10 @@ Most AI coding agents (Claude Code, Cursor, Copilot) include their own model acc
 - **[Live Neon Skills](https://github.com/live-neon/skills)** - Open-source PBD skills for principle extraction and synthesis. The 7 PBD skills were migrated from this repo to live-neon/skills.
 - **[NEON-SOUL](https://github.com/live-neon/neon-soul)** - Soul synthesis for AI agents, using PBD skills for principle extraction and compression.
 
+## Presentations
+
+- **[OpenClaw Meetup - April 2026](slides/2026-04-06-openclaw-meetup-patent-skills.md)** - Introduction to Patent Skills with live demo of code-patent-scanner on OpenClaw's security code
+
 ## Links
 
 - **Skills page:** [obviouslynot.ai/skills](https://obviouslynot.ai/skills)
