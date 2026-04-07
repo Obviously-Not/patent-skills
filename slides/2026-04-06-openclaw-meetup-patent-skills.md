@@ -2,6 +2,8 @@
 
 ## OpenClaw Meetup | April 2026
 
+**Slides:** [View on Gamma](https://gamma.app/docs/Patent-Skills-for-AI-Agents-o0hwxd7kyc1pj6u)
+
 ---
 
 # The Problem

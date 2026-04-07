@@ -173,7 +173,7 @@ Most AI coding agents (Claude Code, Cursor, Copilot) include their own model acc
 
 ## Presentations
 
-- **[OpenClaw Meetup - April 2026](slides/2026-04-06-openclaw-meetup-patent-skills.md)** - Introduction to Patent Skills with live demo of code-patent-scanner on OpenClaw's security code
+- **[OpenClaw Meetup - April 2026](slides/2026-04-06-openclaw-meetup-patent-skills.md)** ([View Slides](https://gamma.app/docs/Patent-Skills-for-AI-Agents-o0hwxd7kyc1pj6u)) - Introduction to Patent Skills with live demo of code-patent-scanner on OpenClaw's security code
 
 ## Links
 
