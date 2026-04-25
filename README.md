@@ -2,6 +2,12 @@
 
 Open-source skills for patent analysis and principle extraction. Built on the [Agent Skills](https://agentskills.io) standard.
 
+## Repository Status
+
+This repository is **fully standalone**. It has no dependencies on private ObviouslyNot repositories.
+
+For integration with the ObviouslyNot ecosystem, see: https://obviouslynot.ai/skills
+
 ## What Are Agent Skills?
 
 Agent skills are portable instructions that extend what AI coding agents can do. Each skill is a `SKILL.md` file — a Markdown document with YAML frontmatter that any compatible agent can read and execute.
