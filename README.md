@@ -174,6 +174,7 @@ Most AI coding agents (Claude Code, Cursor, Copilot) include their own model acc
 
 ## Related Projects
 
+- **[concept-scanner](https://github.com/Obviously-Not/concept-scanner)** - Open-source engineering concept scanner. Point it at a codebase and it surfaces the distinctive technical mechanisms ("concepts") using a local (Ollama) or any OpenAI-compatible LLM. Available as a CLI, Docker image, and GitHub Action.
 - **[Live Neon Skills](https://github.com/live-neon/skills)** - Open-source PBD skills for principle extraction and synthesis. The 7 PBD skills were migrated from this repo to live-neon/skills.
 - **[NEON-SOUL](https://github.com/live-neon/neon-soul)** - Soul synthesis for AI agents, using PBD skills for principle extraction and compression.
 
