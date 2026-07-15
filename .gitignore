@@ -1,0 +1,8 @@
+# Environment files with tokens
+.env
+
+# OS files
+.DS_Store
+
+# Internal docs (stored in multiverse/docs/*/patent-skills/)
+docs/
