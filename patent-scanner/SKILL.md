@@ -96,7 +96,9 @@ User provides:
 | Frame Shift | 0-3 | Does this redefine how to think about the problem? |
 
 **Total Score**: Sum of all dimensions (0-13)
-**Threshold**: Patterns scoring >=8 warrant deeper investigation
+**Reporting Threshold**: Report a pattern only when its total is >= 8 **and** its Distinctiveness score is >= 2
+
+`CALIBRATE:` both values are starting points, subject to revision as eval data accrues. The Distinctiveness minimum exists because the total alone admits a pattern with no distinctiveness (0 + 3 + 3 + 3 = 9); it is 2 because levels 0 and 1 describe a standard approach and a common pattern with minor variation.
 
 ### 1. Component Breakdown
 
@@ -145,7 +147,7 @@ Benefit must be MEASURABLE.
 
 ### 6. Claim Angle Generation (JB-5)
 
-For high-scoring patterns (≥8), generate three claim framings:
+For patterns that meet the reporting threshold (see Scoring Dimensions), generate three claim framings:
 
 1. **Method claim**: Process steps
 2. **System claim**: Components and their arrangement
@@ -199,14 +201,14 @@ In addition to the distinctiveness score, assess patent value signals:
 | **Distinctiveness Confidence** | low/medium/high | Distinctive approach or good engineering? |
 
 **Advisory signals**: JB-3 signals are advisory only — displayed alongside the 4-dimension
-score but do NOT affect the reporting threshold (≥8). The 4-dimension score remains the
+score but do NOT affect the reporting threshold. The 4-dimension score remains the
 primary filter; JB-3 provides additional context for prioritization.
 
 ### Final Analysis: Product Centrality and Defensibility
 
 After scoring patterns on the four distinctiveness dimensions and the JB-3 signals, emit a per-pattern Final Analysis to help the user prioritize which patterns are worth attorney consultation time. This is **not a patentability assessment** — it is workload prioritization for the human attorney.
 
-For each pattern that meets the ≥8 reporting threshold, score two axes:
+For each pattern that meets the reporting threshold, score two axes:
 
 | Axis | Range | Question |
 |------|-------|----------|
@@ -218,13 +220,13 @@ Each score MUST be accompanied by a sentence-level **rationale** — the score a
 **Recommendation rule**:
 
 ```
-recommend_attorney_consultation = (product_centrality + defensibility) / 2 > 0.5
+recommend_attorney_consultation = product_centrality > 0.5 AND defensibility > 0.5
 ```
 
 - If true → **"Recommended for attorney consultation"**
 - If false → **"Engineering note only — attorney consultation likely not productive"**
 
-`CALIBRATE:` the `> 0.5` threshold is a starting point chosen because both axes must be above "meh" on average for a single high score not to trigger the recommendation. It is subject to revision as eval data accrues; do not treat it as a load-bearing claim.
+`CALIBRATE:` the `> 0.5` floor is a starting point, and it applies to each axis on its own so that a single high score cannot trigger the recommendation. An average of the two would not hold that line: 0.95 and 0.10 average 0.525 and would pass. The floor is subject to revision as eval data accrues; do not treat it as a load-bearing claim.
 
 **Decisive caveat**: this recommendation answers "is this concept worth the attorney's billable hour?" — it does NOT answer "is this concept patentable?". Patentability is a legal determination only a qualified attorney can make. The user owns the legal judgment; this scoring just routes attention.
 
@@ -281,9 +283,9 @@ recommend_attorney_consultation = (product_centrality + defensibility) / 2 > 0.5
         "defensibility": 0.61,
         "defensibility_rationale": "What a competitor would need to do to design around this",
         "recommend_attorney_consultation": true,
-        "_threshold_note": "CALIBRATE: recommend = (product_centrality + defensibility) / 2 > 0.5 — threshold subject to revision as eval data accrues"
+        "_threshold_note": "CALIBRATE: recommend = product_centrality > 0.5 AND defensibility > 0.5; each floor subject to revision as eval data accrues"
       },
-      "_claim_angles_note": "Always present: only patterns >=8 are reported, claim_angles generated for all >=8",
+      "_claim_angles_note": "Always present: only patterns that meet the reporting threshold are reported, and every reported pattern gets claim_angles",
       "claim_angles": [
         "Method for [verb]ing comprising...",
         "System comprising [component] configured to...",
@@ -374,7 +376,7 @@ Per-pattern rationale (one line each):
 *Analyzed with [patent-scanner](https://obviouslynot.ai) from obviouslynot.ai*
 ```
 
-**Consult?** = (centrality + defensibility) / 2 > 0.5 (CALIBRATE: threshold subject to revision as eval data accrues). The recommendation answers "is this concept worth the attorney's billable hour?" — NOT "is this concept patentable?"
+**Consult?** = centrality > 0.5 and defensibility > 0.5 (CALIBRATE: each floor is subject to revision as eval data accrues). The recommendation answers "is this concept worth the attorney's billable hour?" It does NOT answer "is this concept patentable?"
 
 ### High-Value Pattern Detected
 
@@ -446,7 +448,7 @@ I need more detail to generate useful analysis. What's the technical mechanism? 
 
 **No Distinctive Aspects Found**:
 ```
-No patterns scored above threshold (8/13). This may mean the distinctiveness is in execution, not architecture. Try adding more specific technical details about HOW it works.
+No patterns met the reporting threshold (8/13, with Distinctiveness 2 or higher). This may mean the distinctiveness is in execution, not architecture. Try adding more specific technical details about HOW it works.
 ```
 
 ---
@@ -469,6 +471,8 @@ No patterns scored above threshold (8/13). This may mean the distinctiveness is 
 
 **2026-06-22** — Renamed the "Novelty Confidence" scoring axis to "Distinctiveness Confidence" (including the `novelty_confidence` JSON field → `distinctiveness_confidence` and the `🟢 Novelty` share-card column → `🟢 Distinctiveness`). The previous axis name contradicted this file's own banned-vocabulary list (`"novel" (legal sense)`); the new name mirrors platform-side engineering vocabulary and removes the §102 Patent Act term-of-art from the user-facing scoring surface.
 
-**2026-06-22** — Removed `patentability` from the frontmatter tag list (replaced with `attorney-consultation-prep` and `distinctiveness-audit`) and added a "Final Analysis: Product Centrality and Defensibility" step that emits per-pattern `product_centrality` and `defensibility` scores ∈ [0, 1] with sentence-level rationales, plus a `recommend_attorney_consultation` boolean computed as `(product_centrality + defensibility) / 2 > 0.5`. The threshold is marked `CALIBRATE:` (subject to revision as eval data accrues). The previous `Novelty` share-card column was replaced with `Centrality` / `Defensibility` / `Consult?` columns. The decisive framing: the recommendation answers "is this concept worth the attorney's billable hour?" — not "is this concept patentable?" Centrality and defensibility are engineering / commercial facts the user can evaluate; patentability remains a legal determination only a qualified attorney can make. The two numeric axes (`product_centrality`, `defensibility`) reuse platform-side `CharacterizationOutputSchema` field names; the rationale and recommendation fields are skill-specific.
+**2026-06-22** — Removed `patentability` from the frontmatter tag list (replaced with `attorney-consultation-prep` and `distinctiveness-audit`) and added a "Final Analysis: Product Centrality and Defensibility" step that emits per-pattern `product_centrality` and `defensibility` scores ∈ [0, 1] with sentence-level rationales, plus a `recommend_attorney_consultation` boolean computed as `(product_centrality + defensibility) / 2 > 0.5`. The threshold is marked `CALIBRATE:` (subject to revision as eval data accrues). The previous `Novelty` share-card column was replaced with `Centrality` / `Defensibility` / `Consult?` columns. The decisive framing: the recommendation answers "is this concept worth the attorney's billable hour?" — not "is this concept patentable?" Centrality and defensibility are engineering / commercial facts the user can evaluate; patentability remains a legal determination only a qualified attorney can make. The two numeric axes (`product_centrality`, `defensibility`) reuse platform-side field names; the rationale and recommendation fields are skill-specific.
 
 **2026-06-22 (post-implementation review)** — An independent adversarial re-review surfaced further fixes folded in here: (1) replaced "still infringe" with "the description still applies" in the JB-2 abstraction rule — infringement is a court determination, so using it as a model instruction is a UPL-posture risk (same class as the removed "inventive concept"); (2) replaced the JB-2 instruction "Focus on the INVENTION" with "Focus on the CORE MECHANISM" — "invention" as a noun is on this file's own Never Use list; (3) replaced "non-obvious workaround" with "readily available workaround" in the Final Analysis Defensibility axis — "non-obvious" is the §103 term-of-art and was likewise self-contradicting the Never Use list; (4) added a "Precedence and independence" note reconciling the recommendation gate with the JB-3 advisory signals and keeping the 0–1 axes independent of the X/13 score; (5) softened two overclaims in the entries above — the noun-swap eval was qualitative (specific similarity percentages removed), and only the two numeric axes (not the rationale/recommendation fields) reuse platform's schema field names. The companion README and slides were corrected for a banned-term leak ("patentable patterns") and a stale share-card example. The closure falsifier was widened from a 4-term `*/SKILL.md` grep to the full Never Use vocabulary across all `*.md` files.
+
+**2026-09-13**: Three corrections, made in both scanner skills. (1) **The recommendation rule averaged its two axes.** `(product_centrality + defensibility) / 2 > 0.5` let a high score on one axis make up for a low score on the other, so a pattern scored 0.95 and 0.10 was recommended, although the rule's own `CALIBRATE:` note said a single high score should not trigger it. The rule is now `product_centrality > 0.5 AND defensibility > 0.5`, still marked `CALIBRATE:`. (2) **The reporting threshold admitted zero distinctiveness.** Distinctiveness (0-4) plus three axes of 0-3 let a pattern through at 0 + 3 + 3 + 3 = 9. A pattern is now reported only when its total is at least 8 and its Distinctiveness score is at least 2, because levels 0 and 1 describe standard approaches and minor variations on common ones; both values are marked `CALIBRATE:`. The JB-5 step, the JB-3 note, the Final Analysis step and the `_claim_angles_note` field now refer to the reporting threshold instead of restating it as a total, and the no-patterns message states both values. (3) The Final Analysis entry of 2026-06-22 was reworded to remove an internal identifier. The 2026-06-22 entries otherwise describe the rules as they were on that date.
