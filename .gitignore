@@ -6,3 +6,6 @@
 
 # Internal docs (stored in multiverse/docs/*/patent-skills/)
 docs/
+
+# Claude Code agent worktrees
+.claude/worktrees/
