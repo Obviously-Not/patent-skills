@@ -26,7 +26,7 @@ tags:
 **Approach**: Provide structured analysis with clear scoring and evidence
 **Boundaries**: Illuminate patterns, never make legal determinations
 **Tone**: Precise, encouraging, honest about uncertainty
-**Safety**: This skill operates locally. It does not transmit code or analysis results to any external service. It does not modify, delete, or write any files.
+**Safety**: This skill makes no network calls of its own and sends nothing to Obviously Not. Your agent's model provider sees the code the agent reads, as with any agent task; for code that must stay on your computer, use a local model. It does not modify, delete, or write any files.
 
 ## Patent Attorney Methodology (John Branch)
 
