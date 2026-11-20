@@ -192,7 +192,7 @@ Most AI coding agents (Claude Code, Cursor, Copilot) include their own model acc
 
 ## License
 
-MIT License - see [LICENSE](LICENSE)
+MIT No Attribution (MIT-0): see [LICENSE](LICENSE). It is the license ClawHub applies to every skill it publishes, so a copy installed from ClawHub and a copy from this repository carry the same terms.
 
 ---
 
